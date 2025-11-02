@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #2a8d8d;
+  --color-secondary: #1f5462;
+  --color-accent: #f2994a;
+  --color-background: #f5f7fa;
+  --color-surface: #ffffff;
+  --color-success: #27ae60;
+  --color-warning: #f2c94c;
+  --color-error: #eb5757;
+  --color-info: #2d9cdb;
+  --font-family-sans: 'Inter', sans-serif;
+  --font-family-display: 'Nunito', sans-serif;
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+  background: var(--color-background);
+  font-family: var(--font-family-sans);
+}
+
+a {
+  @apply text-primary transition-colors duration-150;
+
+  &:hover {
+    @apply text-secondary;
+  }
+}
+
+.focus-ring {
+  @apply focus:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2;
+}

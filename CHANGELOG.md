@@ -1,0 +1,31 @@
+# Changelog
+
+# Changelog
+
+## [0.2.1] - 2025-11-02
+- Alinhados os fluxos públicos (login, recuperação, two-factor) removendo switcher de idioma, cadastro aberto e social login.
+- Eliminadas dependências órfãs (`LocaleSwitcher`, `SocialButton`) e textos não utilizados para manter governança de conteúdo.
+- Padronizado hook `useSignInForm` (remoção de `rememberMe` e exposição desnecessária de `router`) e sincronizado contratos da API.
+- Ajustados templates/páginas para evitar duplicidade de links e consolidar navegação de retorno ao login.
+- Mantida cobertura de testes em 100% após a limpeza.
+
+## [0.2.0] - 2025-11-02
+- Implementado modulo completo de autenticacao publica (login, recuperacao de senha, two-factor) com templates reutilizados e textos centralizados.
+- Adicionados hooks dedicados (`useSignInForm`, `useRecoverPasswordForm`, `useTwoFactorForm`, `useInitializeSession`) com integracao ao store, storage e interceptors.
+- Criados servicos `authApi`, `authSession`, `authStorage` com fallback seguro para SSR e testes unitarios cobrindo headers, expiracao e persistencia.
+- Atualizados componentes atoms/molecules/templates para cobrir variacoes (icones, mensagens de erro, toggles de senha) e reforcado atomic design.
+- Expandida suita de testes para todas as camadas (components, hooks, services, pages) atingindo 100% de cobertura global.
+- Reescritos README e CHANGELOG em UTF-8 sem BOM com informacoes de stack, modulos e metricas.
+
+## [0.1.1] - 2025-11-01
+- Ajustado `_app.tsx` para garantir Provider, guards e overlay em testes dedicados.
+- Refatorados interceptors do Axios (`resolveBaseUrl`, `handle*`) e cobertos com Jest.
+- Ampliada suita de hooks com `resolveGuardRedirect`, validacao por role e hooks tipados do store.
+- Criado `tsconfig.jest.json` para suportar JSX no ts-jest e adicionado teste do App com overlay.
+- Atualizado `LoadingOverlay` para `motion.create` garantindo 100% de cobertura em transicoes.
+- Documentados README e CHANGELOG com metricas e scripts.
+- Realocados testes para os diretorios dos respectivos modulos, removendo agregador `__tests__`.
+- Simplificado `_app.tsx` e ajustados hooks (`useAuthGuard`, `useGlobalLoading`) para usar `useSyncExternalStore`.
+
+## [0.1.0] - 2025-11-01
+- Scaffold inicial criado conforme `development-rules.md` (estrutura de pastas, configuracoes base e dependencias obrigatorias).

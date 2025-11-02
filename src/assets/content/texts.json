@@ -1,0 +1,34 @@
+{
+  "pt": {
+    "auth": {
+      "layout": {
+        "title": "Welcome Back!",
+        "subtitle": "Conecte-se para continuar cuidando dos seus pacientes."
+      },
+      "login": {
+        "emailLabel": "Email ou celular",
+        "emailPlaceholder": "seuemail@onterapi.com.br",
+        "passwordLabel": "Senha",
+        "passwordPlaceholder": "Digite sua senha",
+        "submit": "Entrar",
+        "forgot": "Esqueceu a senha?"
+      },
+      "recover": {
+        "title": "Recuperar acesso",
+        "description": "Informe o email cadastrado para receber as instrucoes de redefinicao.",
+        "emailLabel": "Email cadastrado",
+        "emailPlaceholder": "seuemail@onterapi.com.br",
+        "submit": "Enviar instrucoes",
+        "backToLogin": "Voltar para login"
+      },
+      "twoFactor": {
+        "title": "Validacao em duas etapas",
+        "description": "Digite o codigo recebido para finalizar o acesso.",
+        "codeLabel": "Codigo de verificacao",
+        "codePlaceholder": "000000",
+        "submit": "Validar codigo",
+        "backToLogin": "Voltar para login"
+      }
+    }
+  }
+}
