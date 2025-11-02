@@ -40,7 +40,7 @@ describe('LoginForm component', () => {
 
     render(<LoginForm />);
 
-    expect(screen.getByLabelText('Email ou celular')).toBeInTheDocument();
+    expect(screen.getByLabelText('Email')).toBeInTheDocument();
     expect(screen.getByLabelText('Senha')).toBeInTheDocument();
   });
 

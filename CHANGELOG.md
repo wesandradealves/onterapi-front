@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.2.5] - 2025-11-02
+
+- Ajustado label do campo de login para exibir apenas "Email" conforme regra atual (textos centralizados e testes atualizados).
+
 ## [0.2.4] - 2025-11-02
 
 - Centralizado `USER_ROLES` no `sessionSlice` para evitar duplicidade e garantir DRY entre store e servicos.

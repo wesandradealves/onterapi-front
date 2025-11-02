@@ -6,7 +6,7 @@
         "subtitle": "Conecte-se para continuar cuidando dos seus pacientes."
       },
       "login": {
-        "emailLabel": "Email ou celular",
+        "emailLabel": "Email",
         "emailPlaceholder": "seuemail@onterapi.com.br",
         "passwordLabel": "Senha",
         "passwordPlaceholder": "Digite sua senha",

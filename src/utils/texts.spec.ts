@@ -2,7 +2,7 @@ import { getTexts } from './texts';
 
 describe('getTexts utility', () => {
   it('retorna texto existente', () => {
-    expect(getTexts('auth.login.emailLabel')).toBe('Email ou celular');
+    expect(getTexts('auth.login.emailLabel')).toBe('Email');
   });
 
   it('lança erro para caminho invalido', () => {
