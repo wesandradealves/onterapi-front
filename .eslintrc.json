@@ -1,7 +1,21 @@
 {
-  "extends": ["next", "next/core-web-vitals"],
+  "extends": ["next", "next/core-web-vitals", "plugin:sonarjs/recommended"],
+  "plugins": ["import"],
   "rules": {
     "react-hooks/exhaustive-deps": "error",
-    "@next/next/no-html-link-for-pages": "off"
+    "@next/next/no-html-link-for-pages": "off",
+    "sonarjs/no-duplicate-string": ["error", { "threshold": 4 }],
+    "sonarjs/no-identical-functions": "error",
+    "sonarjs/no-all-duplicated-branches": "error",
+    "import/no-cycle": "error",
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "varsIgnorePattern": "^_",
+        "args": "after-used",
+        "argsIgnorePattern": "^_"
+      }
+    ]
   }
 }

@@ -1,0 +1,11 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "[lint] Executando lint completo..."
+npm run lint || exit 1
+
+echo "[lint-staged] Rodando lint-staged para arquivos modificados..."
+npx lint-staged || exit 1
+
+echo "[test] Rodando suite de testes completa..."
+npm run test -- --runInBand || exit 1

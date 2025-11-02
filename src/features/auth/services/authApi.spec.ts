@@ -1,5 +1,14 @@
 const postMock = jest.fn();
 
+const SIGN_IN_ENDPOINT = '/auth/sign-in';
+const PASSWORD_RESET_ENDPOINT = '/auth/password/reset/request';
+const TWO_FACTOR_ENDPOINT = '/auth/two-factor/validate';
+const USER_AGENT_HEADER = 'user-agent';
+const DEFAULT_USER_AGENT = 'OnTerapiFrontend';
+const DEFAULT_EMAIL = 'user@example.com';
+const DEFAULT_PASSWORD = '123';
+const ACCESS_TOKEN_RESPONSE = { data: { accessToken: 'token' } };
+
 jest.mock('../../../lib/axios', () => ({
   __esModule: true,
   default: {
@@ -35,11 +44,11 @@ const loadAuthApi = (navigatorValue: Navigator | undefined) => {
     });
   }
 
-  let module: typeof import('./authApi');
+  let authApi: typeof import('./authApi');
   jest.isolateModules(() => {
-    module = require('./authApi');
+    authApi = require('./authApi');
   });
-  return module!;
+  return authApi!;
 };
 
 describe('authApi service', () => {
@@ -50,39 +59,43 @@ describe('authApi service', () => {
 
   it('envia credenciais para sign-in com header de user-agent padrao', async () => {
     const { signIn } = loadAuthApi(undefined);
-    postMock.mockResolvedValue({ data: { accessToken: 'token' } });
+    postMock.mockResolvedValue(ACCESS_TOKEN_RESPONSE);
 
-    const result = await signIn({ email: 'user@example.com', password: '123' });
+    const result = await signIn({ email: DEFAULT_EMAIL, password: DEFAULT_PASSWORD });
 
     expect(postMock).toHaveBeenCalledWith(
-      '/auth/sign-in',
-      { email: 'user@example.com', password: '123' },
-      expect.objectContaining({ headers: expect.objectContaining({ 'user-agent': 'OnTerapiFrontend' }) })
+      SIGN_IN_ENDPOINT,
+      { email: DEFAULT_EMAIL, password: DEFAULT_PASSWORD },
+      expect.objectContaining({
+        headers: expect.objectContaining({ [USER_AGENT_HEADER]: DEFAULT_USER_AGENT })
+      })
     );
     expect(result).toEqual({ accessToken: 'token' });
   });
 
   it('usa user-agent do navegador quando disponivel', async () => {
     const { signIn } = loadAuthApi({ userAgent: 'CustomAgent/1.0' } as Navigator);
-    postMock.mockResolvedValue({ data: { accessToken: 'token' } });
+    postMock.mockResolvedValue(ACCESS_TOKEN_RESPONSE);
 
-    await signIn({ email: 'user@example.com', password: '123' });
+    await signIn({ email: DEFAULT_EMAIL, password: DEFAULT_PASSWORD });
 
     expect(postMock).toHaveBeenCalledWith(
-      '/auth/sign-in',
+      SIGN_IN_ENDPOINT,
       expect.any(Object),
-      expect.objectContaining({ headers: expect.objectContaining({ 'user-agent': 'CustomAgent/1.0' }) })
+      expect.objectContaining({
+        headers: expect.objectContaining({ [USER_AGENT_HEADER]: 'CustomAgent/1.0' })
+      })
     );
   });
 
   it('valida codigo de two-factor', async () => {
     const { validateTwoFactor } = loadAuthApi(undefined);
-    postMock.mockResolvedValue({ data: { accessToken: 'token' } });
+    postMock.mockResolvedValue(ACCESS_TOKEN_RESPONSE);
 
     await validateTwoFactor({ tempToken: 'temp', code: '123456' });
 
     expect(postMock).toHaveBeenCalledWith(
-      '/auth/two-factor/validate',
+      TWO_FACTOR_ENDPOINT,
       { tempToken: 'temp', code: '123456', trustDevice: undefined },
       expect.any(Object)
     );
@@ -92,11 +105,11 @@ describe('authApi service', () => {
     const { requestPasswordReset } = loadAuthApi(undefined);
     postMock.mockResolvedValue({ data: { delivered: true } });
 
-    await requestPasswordReset({ email: 'user@example.com' });
+    await requestPasswordReset({ email: DEFAULT_EMAIL });
 
     expect(postMock).toHaveBeenCalledWith(
-      '/auth/password/reset/request',
-      { email: 'user@example.com' },
+      PASSWORD_RESET_ENDPOINT,
+      { email: DEFAULT_EMAIL },
       expect.any(Object)
     );
   });

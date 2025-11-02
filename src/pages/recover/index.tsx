@@ -1,4 +1,4 @@
-import PublicLayout from '../../layouts/PublicLayout';
+﻿import PublicLayout from '../../layouts/PublicLayout';
 import AuthTemplate from '../../components/templates/AuthTemplate';
 import RecoverForm from '../../features/auth/components/AuthForm/RecoverForm';
 import TextLink from '../../components/atoms/TextLink';

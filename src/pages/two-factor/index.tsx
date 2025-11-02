@@ -1,11 +1,12 @@
-import PublicLayout from '../../layouts/PublicLayout';
+﻿import PublicLayout from '../../layouts/PublicLayout';
 import AuthTemplate from '../../components/templates/AuthTemplate';
 import TwoFactorForm from '../../features/auth/components/AuthForm/TwoFactorForm';
-import { getTexts } from '../../utils/texts';
+import { getTexts, AppLocale } from '../../utils/texts';
 import { wrapperClass } from './styles';
 
 const TwoFactorPage = () => {
-  const texts = getTexts('auth.twoFactor');
+  const locale: AppLocale = 'pt';
+  const texts = getTexts('auth.twoFactor', locale);
 
   return (
     <PublicLayout>

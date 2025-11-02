@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "[pre-push] Validacao iniciada..."
+npm run lint || exit 1
+npm run test -- --runInBand || exit 1

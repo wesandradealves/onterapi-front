@@ -29,6 +29,24 @@
         "submit": "Validar codigo",
         "backToLogin": "Voltar para login"
       }
+    },
+    "seo": {
+      "default": {
+        "title": "OnTerapi | Plataforma completa para terapias e clinicas",
+        "description": "Centralize atendimentos, pacientes, agenda e toda a jornada terapeutica em um unico ambiente digital."
+      },
+      "login": {
+        "title": "Entrar | OnTerapi",
+        "description": "Acesse o painel OnTerapi para acompanhar pacientes, agenda, equipe e fluxos terapeuticos com seguranca."
+      },
+      "recover": {
+        "title": "Recuperar acesso | OnTerapi",
+        "description": "Solicite a redefinicao de senha para recuperar rapidamente o acesso a plataforma OnTerapi."
+      },
+      "twoFactor": {
+        "title": "Verificacao em duas etapas | OnTerapi",
+        "description": "Informe o codigo enviado para confirmar sua identidade e concluir o login com seguranca."
+      }
     }
   }
 }

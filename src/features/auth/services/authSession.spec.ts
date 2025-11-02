@@ -59,6 +59,7 @@ describe('authSession service', () => {
     expect(authStorage.saveTokens).toHaveBeenCalledWith(tokens);
     expect(authStorage.clearTempToken).toHaveBeenCalled();
     expect(setAuthenticatedSession).toHaveBeenCalled();
+    expect(setTempToken).toHaveBeenCalledWith(null);
     expect(store.dispatch).toHaveBeenCalledWith(expect.objectContaining({ type: 'setTempToken', payload: null }));
   });
 
@@ -66,6 +67,7 @@ describe('authSession service', () => {
     persistTempToken('temp');
 
     expect(authStorage.saveTempToken).toHaveBeenCalledWith('temp');
+    expect(setTempToken).toHaveBeenCalledWith('temp');
     expect(store.dispatch).toHaveBeenCalledWith(expect.objectContaining({ type: 'setTempToken', payload: 'temp' }));
   });
 

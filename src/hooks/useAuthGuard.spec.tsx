@@ -34,6 +34,12 @@ const authenticatedSession = {
   }
 };
 
+const ROUTE_LOGIN = '/login';
+const ROUTE_TWO_FACTOR = '/two-factor';
+const ROUTE_DASHBOARD = '/dashboard';
+const ROUTE_SETTINGS = '/settings';
+const TEMP_TOKEN = 'temp';
+
 describe('useAuthGuard', () => {
   afterEach(() => {
     act(() => {
@@ -50,20 +56,20 @@ describe('useAuthGuard', () => {
 
   it('forces login flow for two-factor route without temp token', () => {
     const replaceMock = jest.fn();
-    RouterMock.mockReturnValue({ pathname: '/two-factor', replace: replaceMock });
+    RouterMock.mockReturnValue({ pathname: ROUTE_TWO_FACTOR, replace: replaceMock });
     render(
       <Wrapper>
         <GuardProbe />
       </Wrapper>
     );
-    expect(replaceMock).toHaveBeenCalledWith('/login');
+    expect(replaceMock).toHaveBeenCalledWith(ROUTE_LOGIN);
   });
 
   it('stays on two-factor when temp token presente', () => {
     const replaceMock = jest.fn();
-    RouterMock.mockReturnValue({ pathname: '/two-factor', replace: replaceMock });
+    RouterMock.mockReturnValue({ pathname: ROUTE_TWO_FACTOR, replace: replaceMock });
     act(() => {
-      store.dispatch(setTempToken('temp'));
+      store.dispatch(setTempToken(TEMP_TOKEN));
     });
     render(
       <Wrapper>
@@ -75,9 +81,9 @@ describe('useAuthGuard', () => {
 
   it('redireciona autenticado para dashboard quando em two-factor', () => {
     const replaceMock = jest.fn();
-    RouterMock.mockReturnValue({ pathname: '/two-factor', replace: replaceMock });
+    RouterMock.mockReturnValue({ pathname: ROUTE_TWO_FACTOR, replace: replaceMock });
     act(() => {
-      store.dispatch(setTempToken('temp'));
+      store.dispatch(setTempToken(TEMP_TOKEN));
       store.dispatch(setAuthenticatedSession(authenticatedSession));
     });
     render(
@@ -85,12 +91,12 @@ describe('useAuthGuard', () => {
         <GuardProbe />
       </Wrapper>
     );
-    expect(replaceMock).toHaveBeenCalledWith('/dashboard');
+    expect(replaceMock).toHaveBeenCalledWith(ROUTE_DASHBOARD);
   });
 
   it('redirects authenticated users away from public-only routes', () => {
     const replaceMock = jest.fn();
-    RouterMock.mockReturnValue({ pathname: '/login', replace: replaceMock });
+    RouterMock.mockReturnValue({ pathname: ROUTE_LOGIN, replace: replaceMock });
     act(() => {
       store.dispatch(setAuthenticatedSession(authenticatedSession));
     });
@@ -99,12 +105,12 @@ describe('useAuthGuard', () => {
         <GuardProbe />
       </Wrapper>
     );
-    expect(replaceMock).toHaveBeenCalledWith('/dashboard');
+    expect(replaceMock).toHaveBeenCalledWith(ROUTE_DASHBOARD);
   });
 
   it('allows access to private routes when authenticated', () => {
     const replaceMock = jest.fn();
-    RouterMock.mockReturnValue({ pathname: '/dashboard', replace: replaceMock });
+    RouterMock.mockReturnValue({ pathname: ROUTE_DASHBOARD, replace: replaceMock });
     act(() => {
       store.dispatch(setAuthenticatedSession(authenticatedSession));
     });
@@ -118,7 +124,7 @@ describe('useAuthGuard', () => {
 
   it('blocks unauthorized roles from restricted routes', () => {
     const replaceMock = jest.fn();
-    RouterMock.mockReturnValue({ pathname: '/settings', replace: replaceMock });
+    RouterMock.mockReturnValue({ pathname: ROUTE_SETTINGS, replace: replaceMock });
     act(() => {
       store.dispatch(setAuthenticatedSession(authenticatedSession));
     });
@@ -127,12 +133,12 @@ describe('useAuthGuard', () => {
         <GuardProbe />
       </Wrapper>
     );
-    expect(replaceMock).toHaveBeenCalledWith('/dashboard');
+    expect(replaceMock).toHaveBeenCalledWith(ROUTE_DASHBOARD);
   });
 
   it('allows authorized roles to stay on restricted routes', () => {
     const replaceMock = jest.fn();
-    RouterMock.mockReturnValue({ pathname: '/settings', replace: replaceMock });
+    RouterMock.mockReturnValue({ pathname: ROUTE_SETTINGS, replace: replaceMock });
     act(() => {
       store.dispatch(
         setAuthenticatedSession({

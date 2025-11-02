@@ -1,4 +1,4 @@
-import PublicLayout from '../../layouts/PublicLayout';
+﻿import PublicLayout from '../../layouts/PublicLayout';
 import AuthTemplate from '../../components/templates/AuthTemplate';
 import LoginForm from '../../features/auth/components/AuthForm/LoginForm';
 import { getTexts, AppLocale } from '../../utils/texts';
@@ -7,7 +7,6 @@ import { wrapperClass } from './styles';
 const LoginPage = () => {
   const locale: AppLocale = 'pt';
   const layoutTexts = getTexts('auth.layout', locale);
-  const loginTexts = getTexts('auth.login', locale);
 
   return (
     <PublicLayout>

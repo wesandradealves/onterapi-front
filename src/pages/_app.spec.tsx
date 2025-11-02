@@ -1,6 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 import '@testing-library/jest-dom';
-import { act, render, screen } from '@testing-library/react';
+import { act, render, screen, waitFor } from '@testing-library/react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import App from './_app';
@@ -55,9 +55,11 @@ describe('Next App', () => {
     act(() => {
       store.dispatch(setLoading(false));
     });
+    document.head.innerHTML = '';
+    document.title = '';
   });
 
-  it('renders pages and shows loading overlay when store reports activity', () => {
+  it('renderiza pagina, SEO padrao e overlay de carregamento', async () => {
     const router = createRouter({ pathname: '/public', route: '/public' }) as unknown as AppProps['router'];
     RouterMock.mockReturnValue(router);
 
@@ -65,6 +67,13 @@ describe('Next App', () => {
 
     expect(screen.getByText('Test Page')).toBeInTheDocument();
     expect(useAuthGuard).toHaveBeenCalled();
+
+    await waitFor(() => expect(document.title).toBe('OnTerapi | Plataforma completa para terapias e clinicas'));
+    const metaDescription = document.querySelector('meta[name="description"]');
+    expect(metaDescription).toHaveAttribute(
+      'content',
+      'Centralize atendimentos, pacientes, agenda e toda a jornada terapeutica em um unico ambiente digital.'
+    );
 
     act(() => {
       store.dispatch(setLoading(true));
