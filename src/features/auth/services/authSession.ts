@@ -1,25 +1,11 @@
 import api from '../../../lib/axios';
 import { store } from '../../../store';
-import {
-  setAuthenticatedSession,
-  setTempToken,
-  clearSession,
-  UserRole
-} from '../../../store/slices/sessionSlice';
+import type { UserRole } from '../../../store/slices/sessionSlice';
+import { setAuthenticatedSession, setTempToken, clearSession, USER_ROLES } from '../../../store/slices/sessionSlice';
 import { authStorage, StoredTokens } from './authStorage';
 
-const KNOWN_ROLES: UserRole[] = [
-  'SUPER_ADMIN',
-  'CLINIC_OWNER',
-  'MANAGER',
-  'PROFESSIONAL',
-  'SECRETARY',
-  'PATIENT',
-  ''
-];
-
 const normalizeRole = (role: unknown): UserRole =>
-  typeof role === 'string' && (KNOWN_ROLES as string[]).includes(role)
+  typeof role === 'string' && (USER_ROLES as readonly string[]).includes(role)
     ? (role as UserRole)
     : '';
 

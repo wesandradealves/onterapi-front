@@ -24,7 +24,10 @@ jest.mock('../../../store', () => ({
 }));
 
 jest.mock('../../../store/slices/sessionSlice', () => ({
-  setAuthenticatedSession: jest.fn().mockImplementation(payload => ({ type: 'setAuthenticatedSession', payload })),
+  USER_ROLES: ['SUPER_ADMIN', 'CLINIC_OWNER', 'MANAGER', 'PROFESSIONAL', 'SECRETARY', 'PATIENT', ''] as const,
+  setAuthenticatedSession: jest
+    .fn()
+    .mockImplementation(payload => ({ type: 'setAuthenticatedSession', payload })),
   setTempToken: jest.fn().mockImplementation(payload => ({ type: 'setTempToken', payload })),
   clearSession: jest.fn().mockImplementation(() => ({ type: 'clearSession' }))
 }));

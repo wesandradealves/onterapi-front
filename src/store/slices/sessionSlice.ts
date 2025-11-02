@@ -9,6 +9,16 @@ export type UserRole =
   | 'PATIENT'
   | '';
 
+export const USER_ROLES: readonly UserRole[] = [
+  'SUPER_ADMIN',
+  'CLINIC_OWNER',
+  'MANAGER',
+  'PROFESSIONAL',
+  'SECRETARY',
+  'PATIENT',
+  ''
+] as const;
+
 interface SessionUser {
   id: string;
   email: string;

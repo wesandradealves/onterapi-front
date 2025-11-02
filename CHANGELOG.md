@@ -5,6 +5,8 @@
 - Corrigido o build na Vercel ao renomear paginas para `*.page.tsx`, configurar `pageExtensions` no Next e excluir stories do TypeScript.
 - Normalizada a role do usuario em `authSession` garantindo compatibilidade com `UserRole` e cobrindo o fluxo com testes.
 - Atualizados testes das paginas para os novos caminhos, mantendo cobertura total.
+- Centralizado `USER_ROLES` no `sessionSlice` para evitar duplicidade e garantir DRY entre store e servicos.
+- Ajustado `PublicLayout` para usar `<main>` no wrapper, garantindo semantica de layout.
 
 ## [0.2.2] - 2025-11-02
 
