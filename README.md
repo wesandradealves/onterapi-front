@@ -78,17 +78,3 @@ O Next.js carregara essa URL automaticamente durante `npm run dev` ou `npm run b
 - `.husky/pre-commit`: executa lint completo, `lint-staged` e a suite de testes em modo serial para evitar falsos positivos.
 - `.husky/pre-push`: repete lint + testes garantindo que o estado enviado ao repositorio esteja 100% coberto.
   > Todos os hooks falham imediatamente se houver violacoes de qualidade, duplicidades ou queda de cobertura.
-
-## Documentacao e Recursos
-
-- Regras completas: `../development-rules.md`.
-- Panorama do backend: `../backend-overview.md` + Swagger `https://onterapi.vercel.app/docs-json`.
-- Fluxos de autenticacao: consultar `src/features/auth` (hooks, services, layouts).
-
-## Proximos Passos Sugeridos
-
-1. Expandir modulo de autenticacao com onboarding (signup) reutilizando o template atual.
-2. Instanciar camada de templates/layouts para dashboard (area logada) com atomic design consistente.
-3. Integrar monitoramento (observabilidade) seguindo regras de hooks centralizados.
-
-> Todos os arquivos sao gravados em UTF-8 sem BOM conforme padrao do projeto.
