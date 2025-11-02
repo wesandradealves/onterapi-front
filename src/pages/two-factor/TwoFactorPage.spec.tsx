@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
-import TwoFactorPage from './index';
+import TwoFactorPage from './index.page';
 
 jest.mock('next/router', () => ({
   useRouter: () => ({ pathname: '/two-factor', asPath: '/two-factor' })

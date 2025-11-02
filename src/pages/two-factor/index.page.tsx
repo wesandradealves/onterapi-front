@@ -1,4 +1,4 @@
-﻿import PublicLayout from '../../layouts/PublicLayout';
+import PublicLayout from '../../layouts/PublicLayout';
 import AuthTemplate from '../../components/templates/AuthTemplate';
 import TwoFactorForm from '../../features/auth/components/AuthForm/TwoFactorForm';
 import { getTexts, AppLocale } from '../../utils/texts';

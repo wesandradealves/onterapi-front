@@ -1,7 +1,7 @@
 ﻿import React from 'react';
 import '@testing-library/jest-dom';
 import { render, screen, waitFor } from '@testing-library/react';
-import RecoverPage from './index';
+import RecoverPage from './index.page';
 
 jest.mock('next/router', () => ({
   useRouter: () => ({ pathname: '/recover', asPath: '/recover' })

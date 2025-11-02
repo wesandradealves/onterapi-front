@@ -3,7 +3,7 @@ import '@testing-library/jest-dom';
 import { act, render, screen, waitFor } from '@testing-library/react';
 import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
-import App from './_app';
+import App from './_app.page';
 import { store } from '../store';
 import { setLoading } from '../store/slices/uiSlice';
 import { useAuthGuard } from '../hooks/useAuthGuard';

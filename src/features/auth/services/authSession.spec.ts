@@ -63,6 +63,28 @@ describe('authSession service', () => {
     expect(store.dispatch).toHaveBeenCalledWith(expect.objectContaining({ type: 'setTempToken', payload: null }));
   });
 
+  it('normaliza role desconhecido antes de persistir sessao', () => {
+    const unexpectedRoleTokens = {
+      ...tokens,
+      user: { ...tokens.user, role: 'DESCONHECIDO' as unknown as string }
+    };
+
+    applyAuthenticatedSession(unexpectedRoleTokens);
+
+    expect(authStorage.saveTokens).toHaveBeenCalledWith(
+      expect.objectContaining({
+        user: expect.objectContaining({ role: '' })
+      })
+    );
+    const setSessionArgs = (setAuthenticatedSession as jest.Mock).mock.calls[0][0];
+    expect(setSessionArgs).toEqual(
+      expect.objectContaining({
+        role: '',
+        user: expect.objectContaining({ role: '' })
+      })
+    );
+  });
+
   it('persiste token temporario', () => {
     persistTempToken('temp');
 

@@ -1,4 +1,7 @@
-import { getServerSideProps } from './index';
+import React from 'react';
+import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
+import HomeRedirect, { getServerSideProps } from './index.page';
 
 describe('HomeRedirect page', () => {
   it('redirects to login via getServerSideProps', async () => {
@@ -9,5 +12,10 @@ describe('HomeRedirect page', () => {
         permanent: false
       }
     });
+  });
+
+  it('renderiza componente vazio', () => {
+    const { container } = render(<HomeRedirect />);
+    expect(container.firstChild).toBeNull();
   });
 });

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.3] - 2025-11-02
+
+- Corrigido o build na Vercel ao renomear paginas para `*.page.tsx`, configurar `pageExtensions` no Next e excluir stories do TypeScript.
+- Normalizada a role do usuario em `authSession` garantindo compatibilidade com `UserRole` e cobrindo o fluxo com testes.
+- Atualizados testes das paginas para os novos caminhos, mantendo cobertura total.
+
 ## [0.2.2] - 2025-11-02
 
 - Reforcada a configuracao do ESLint com plugin SonarJS, `import/no-cycle` e `no-unused-vars` estrito para impedir duplicidades e riscos de manutencao.
