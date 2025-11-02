@@ -1,11 +1,10 @@
 # Changelog
 
-# Changelog
-
 ## [0.2.1] - 2025-11-02
 - Alinhados os fluxos públicos (login, recuperação, two-factor) removendo switcher de idioma, cadastro aberto e social login.
 - Eliminadas dependências órfãs (`LocaleSwitcher`, `SocialButton`) e textos não utilizados para manter governança de conteúdo.
 - Padronizado hook `useSignInForm` (remoção de `rememberMe` e exposição desnecessária de `router`) e sincronizado contratos da API.
+- Configurado NEXT_PUBLIC_API_BASE_URL via .env e carregamento automatico em testes (jest.setup.ts).
 - Ajustados templates/páginas para evitar duplicidade de links e consolidar navegação de retorno ao login.
 - Mantida cobertura de testes em 100% após a limpeza.
 

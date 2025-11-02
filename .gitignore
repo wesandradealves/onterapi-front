@@ -1,5 +1,8 @@
 .next
-.env*
+.env.local
+.env.production
+.env.development
+.env.test
 node_modules
 coverage
 dist

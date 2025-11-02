@@ -9,14 +9,26 @@ import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import { store } from '../store';
 import { resetLoading } from '../store/slices/uiSlice';
 
+const DEFAULT_URL = 'https://onterapi.vercel.app';
+
 describe('axios interceptors', () => {
   beforeEach(() => {
+    process.env.NEXT_PUBLIC_API_BASE_URL = DEFAULT_URL;
     store.dispatch(resetLoading());
   });
 
-  it('resolves base URL with fallback', () => {
-    expect(resolveBaseUrl(undefined)).toBe('');
+  afterEach(() => {
+    delete process.env.NEXT_PUBLIC_API_BASE_URL;
+  });
+
+  it('resolves base URL from environment', () => {
+    expect(resolveBaseUrl(undefined)).toBe(DEFAULT_URL);
     expect(resolveBaseUrl('https://onterapi.test')).toBe('https://onterapi.test');
+  });
+
+  it('throws when base URL is missing', () => {
+    delete process.env.NEXT_PUBLIC_API_BASE_URL;
+    expect(() => resolveBaseUrl(undefined)).toThrow('NEXT_PUBLIC_API_BASE_URL is not defined');
   });
 
   const createConfig = (): InternalAxiosRequestConfig =>

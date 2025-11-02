@@ -3,6 +3,7 @@ import type { Config } from 'jest';
 const baseConfig: Config = {
   preset: 'ts-jest/presets/js-with-ts',
   testEnvironment: 'jsdom',
+  setupFiles: ['<rootDir>/jest.setup.ts'],
   setupFilesAfterEnv: ['@testing-library/jest-dom'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   moduleNameMapper: {

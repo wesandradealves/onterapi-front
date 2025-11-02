@@ -50,6 +50,15 @@ npm install
 npm run dev
 ```
 
+## Configuracao de API
+Crie um arquivo `.env` na raiz do projeto com a variavel abaixo (ajuste o valor conforme o ambiente alvo):
+
+```env
+NEXT_PUBLIC_API_BASE_URL=https://onterapi.vercel.app
+```
+
+O Next.js carregara essa URL automaticamente durante `npm run dev` ou `npm run build`.
+
 ## Qualidade e Testes
 - `npm run test` garante cobertura atual **100%** (statements, branches, funcoes e linhas).
 - Interceptors, hooks, layouts, paginas e componentes contam com testes dedicados localizados nos proprios diretorios.

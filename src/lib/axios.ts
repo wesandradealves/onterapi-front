@@ -6,8 +6,14 @@ import axios, {
 import { store } from '../store';
 import { resetLoading, setLoading } from '../store/slices/uiSlice';
 
-export const resolveBaseUrl = (value: string | undefined = process.env.NEXT_PUBLIC_API_BASE_URL) =>
-  value ?? '';
+export const resolveBaseUrl = (
+  value: string | undefined = process.env.NEXT_PUBLIC_API_BASE_URL
+) => {
+  if (!value) {
+    throw new Error('NEXT_PUBLIC_API_BASE_URL is not defined');
+  }
+  return value;
+};
 
 export const api = axios.create({
   baseURL: resolveBaseUrl(),
